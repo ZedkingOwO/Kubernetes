@@ -1,3 +1,3 @@
-# Kubernetes 笔记
-邮箱: 505697096@qq.com
+# Kubernetes Notes
+Email: 505697096@qq.com
 
