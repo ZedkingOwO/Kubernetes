@@ -407,9 +407,9 @@ kube-node-lease：节点租约资源所用的名称空间
 
 Pod的组成形式有两种
 
-◼ 单容器Pod：仅含有单个容器
+ 单容器Pod：仅含有单个容器
 
-◼ 多容器Pod：含有多个具有“超亲密”关系的容器
+ 多容器Pod：含有多个具有“超亲密”关系的容器
 
 ​		同一Pod内的所有容器都将运行于由Scheduler选定的同一个节点上
 
@@ -445,11 +445,11 @@ api 接收不到 kubelet汇报的POD状态
 
 Pod的重启策略：决定了容器终止后是否应该重启
 
-◼ Always：无论何种exit code，都要重启容器
+Always：无论何种exit code，都要重启容器
 
-◼ OnFailure：仅在exit code为非0值（即错误退出）时才重启容器
+OnFailure：仅在exit code为非0值（即错误退出）时才重启容器
 
-◼ Never：无论何种exit code，都不重启容器
+Never：无论何种exit code，都不重启容器
 
 
 
@@ -506,23 +506,23 @@ spec:
 
 探测机制
 
-◼ Exec Action：根据指定命令的结果状态码判定
+Exec Action：根据指定命令的结果状态码判定
 
-◼ TcpSocket Action：根据相应TCP套接字连接建立状态判定
+TcpSocket Action：根据相应TCP套接字连接建立状态判定
 
-◼ HTTPGet Action：根据指定https/http服务URL的响应结果判定
+HTTPGet Action：根据指定https/http服务URL的响应结果判定
 
 配置参数
 
-◼ initialDelaySeconds：容器启动后多久开始执行探测，默认为 0。（容器中的程序可能非常大，启动很慢，如果不给他一个足够的时间启动，那么会造成死循环，在他没起来的时候探测都是失败的，然后一直重启）
+ initialDelaySeconds：容器启动后多久开始执行探测，默认为 0。（容器中的程序可能非常大，启动很慢，如果不给他一个足够的时间启动，那么会造成死循环，在他没起来的时候探测都是失败的，然后一直重启）
 
-◼ periodSeconds：探测之间的间隔时间。
+ periodSeconds：探测之间的间隔时间。
 
-◼ timeoutSeconds：单次探测的超时时长 
+ timeoutSeconds：单次探测的超时时长 
 
-◼ successThreshold：成功阈值
+ successThreshold：成功阈值
 
-◼ failureThreshold：失败阈值，连续失败多少次后标记为失败，默认为 3
+ failureThreshold：失败阈值，连续失败多少次后标记为失败，默认为 3
 
 ```apl
 Container Probe (探测): 周期性向容器发起探测请求
@@ -711,11 +711,11 @@ k8s把底层的硬件抽象成资源池，让用户关注引用本身即可，�
 
 #### Persistent Volume和Persistent Volume Claim可用于降低这种耦合关系
 
-◼ PV（Persistent Volume）是集群级别的资源，负责将存储空间引入到集群中，通常由管理员定义
+ PV（Persistent Volume）是集群级别的资源，负责将存储空间引入到集群中，通常由管理员定义
 
-◼ PVC（Persistent Volume Claim）是名称空间级别的资源，由用户定义，用于在空闲的PV中申请使用符合过滤条件的PV之一，与选定的PV是“一对一”的关系
+ PVC（Persistent Volume Claim）是名称空间级别的资源，由用户定义，用于在空闲的PV中申请使用符合过滤条件的PV之一，与选定的PV是“一对一”的关系
 
-◼ 用户在Pod上通过pvc插件请求绑定使用定义好的PVC资源
+ 用户在Pod上通过pvc插件请求绑定使用定义好的PVC资源
 
 StorageClass资源支持PV的动态预配（Provision）
 
@@ -749,24 +749,24 @@ StorageClass通过API 管理我们的存储服务，并在上面创建用户需�
 
 PV资源
 
-◼ PV是标准的资源类型，除了负责关联至后端存储系统外，它通常还需要定义支持的存储特性
+PV是标准的资源类型，除了负责关联至后端存储系统外，它通常还需要定义支持的存储特性
 
-◆Volume Mode：当前PV卷提供的存储空间模型，分为块设备和文件系统两种
+Volume Mode：当前PV卷提供的存储空间模型，分为块设备和文件系统两种
 
-◆StorageClassName：当前PV隶属的存储类；
+StorageClassName：当前PV隶属的存储类；
 
-◆AccessMode：支持的访问模型，分为单路读写、多路读写和多路只读三种
+AccessMode：支持的访问模型，分为单路读写、多路读写和多路只读三种
 
 ```
 RWO、RWX、ROX、PRWO
 文件系统一般支持多路读写、块设备一般单路读写
 ```
 
-◆Size：当前PV允许使用的空间上限/大小
+Size：当前PV允许使用的空间上限/大小
 
-◼ 在对象元数据上，还能够根据需要定义标签
+ 在对象元数据上，还能够根据需要定义标签
 
-◼ 一般需要定义回收策略：Retain、Recycle和Delete
+ 一般需要定义回收策略：Retain、Recycle和Delete
 
 ```
 Retain：表示当 PersistentVolume 上的 PersistentVolumeClaim 被删除时，保留 PersistentVolume 上的数据。换句话说，数据不会被删除，而是保留在持久存储中，需要手动进行清理。
@@ -778,11 +778,11 @@ Recycle：它会简单地将 PersistentVolume 上的数据清空，以便后续�
 
 PVC资源
 
-◼ PVC也是标准的资源类型，它允许用户按需指定期望的存储特性，并以之为条件，按特定的条件顺序进行PV过滤
+ PVC也是标准的资源类型，它允许用户按需指定期望的存储特性，并以之为条件，按特定的条件顺序进行PV过滤
 
-◆VolumeMode → LabelSelector → StorageClassName → AccessMode → Size
+VolumeMode → LabelSelector → StorageClassName → AccessMode → Size
 
-◼ 支持动态预配的存储类，还可以根据PVC的条件按需完成PV创建
+ 支持动态预配的存储类，还可以根据PVC的条件按需完成PV创建
 
 ![image-20240330201316977](../images/image-20240330201316977.png)
 
@@ -804,21 +804,21 @@ PVC资源
 
 StorageClass资源
 
-◼ Kubernetes支持的标准资源类型之一
+ Kubernetes支持的标准资源类型之一
 
-◼ 为管理PV资源之便而按需创建的存储资源类别（逻辑组）
+ 为管理PV资源之便而按需创建的存储资源类别（逻辑组）
 
-◼ 是PVC筛选PV时的过滤条件之一
+ 是PVC筛选PV时的过滤条件之一
 
-◼ 为动态创建PV提供“模板”
+ 为动态创建PV提供“模板”
 
-​		◆需要存储服务提供管理API
+​		需要存储服务提供管理API
 
-​		◆StorageClass资源上配置接入API的各种参数
+​		StorageClass资源上配置接入API的各种参数
 
 ​				 定义在parameters字段中，还需要使用provisioner字段指明存储服务类型
 
-◼ 一般由集群管理员定义，隶属集群级别
+ 一般由集群管理员定义，隶属集群级别
 
 ![image-20240330202508770](../images/image-20240330202508770.png)
 
@@ -881,13 +881,13 @@ hostPath卷允许Pod访问节点上的任意路径，也存在一定程度的安
 
 PVC迟延绑定
 
-◼ 配置PVC绑定local PV时，通常要创建一个StorageClass
+ 配置PVC绑定local PV时，通常要创建一个StorageClass
 
-◆provisioner字段的值“no-provisioner”表示不使用动态置备PV，因为local插件不支持
+provisioner字段的值“no-provisioner”表示不使用动态置备PV，因为local插件不支持
 
-◆volumeBindingMode字段的值“WaitForFirstConsumer”表示等待消费者（Pod）申请使用PVC时（即第一次被调度时）再进行PV绑定，即“延迟绑定”
+volumeBindingMode字段的值“WaitForFirstConsumer”表示等待消费者（Pod）申请使用PVC时（即第一次被调度时）再进行PV绑定，即“延迟绑定”
 
-◆延迟绑定机制，提供了基于消费者的需求来判定将PVC绑定至哪个PV的可能性
+延迟绑定机制，提供了基于消费者的需求来判定将PVC绑定至哪个PV的可能性
 
 ![image-20240330214515742](../images/image-20240330214515742.png)
 
@@ -1145,9 +1145,9 @@ Kubernetes的卷通常是基于外部文件系统或块存储实现，这种存�
 CAS则是将存储系统自身部署为Kubernetes集群上的一种较新的存储解决方案
 
 ```
-◆存储系统自身（包括存储控制器）在Kubernetes上以容器化微服务的方式运行
-◆使得工作负载更易于移植，且更容易根据应用程序的需求改动使用的存储
-◆通常基于工作负载或者按集群部署，因此消除了共享存储的跨工作负载甚至是跨集群的爆炸半径
+存储系统自身（包括存储控制器）在Kubernetes上以容器化微服务的方式运行
+使得工作负载更易于移植，且更容易根据应用程序的需求改动使用的存储
+通常基于工作负载或者按集群部署，因此消除了共享存储的跨工作负载甚至是跨集群的爆炸半径
 ```
 
 存储在 CAS 中的数据可以直接从集群内的容器访问，从而能显著减少读/写时间
@@ -1163,16 +1163,16 @@ CAS则是将存储系统自身部署为Kubernetes集群上的一种较新的存�
 控制平面
 
 ```
-◆负责配置卷以及其他同存储相关任务
-◆由存储控制器、存储策略以及如何配置数据平面的指令组成
+负责配置卷以及其他同存储相关任务
+由存储控制器、存储策略以及如何配置数据平面的指令组成
 ```
 
  数据平面
 
 ```
-◆接收并执行来自控制平面的有关如何保存和访问容器信息的指令
-◆主要组件是实现池化存储的存储引擎，这类引擎本质上负责输入/输出卷路径
-◆OpenEBS支持存储引擎包括Mayastor、cStor、Jiva和OpenEBS LocalPV等
+接收并执行来自控制平面的有关如何保存和访问容器信息的指令
+主要组件是实现池化存储的存储引擎，这类引擎本质上负责输入/输出卷路径
+OpenEBS支持存储引擎包括Mayastor、cStor、Jiva和OpenEBS LocalPV等
 ```
 
 ![image-20240331142146218](../images/image-20240331142146218.png)
@@ -1195,34 +1195,34 @@ CAS则是将存储系统自身部署为Kubernetes集群上的一种较新的存�
 
 ```
 数据引擎的功能
-◼ 数据引擎类似于存储控制器，也可将其比作是一种SDS的实现
-◼ OpenEBS提供了一系列的数据引擎，所有引擎都支持PV的动态置备和数据的强一致性
+ 数据引擎类似于存储控制器，也可将其比作是一种SDS的实现
+ OpenEBS提供了一系列的数据引擎，所有引擎都支持PV的动态置备和数据的强一致性
  数据引擎的分类
-◼ 本地引擎
-◆本地引擎可以从本地磁盘设备（依赖于NDM）或主机路径创建PV，也可基于集群节点上的LVM或ZFS创建PV
-◆适合内置可用性和可扩展性功能的应用程序，或者作业类的有状态工作负载
-◆基于节点上支持的存储机制，可选的动态Local PV包括 Local PV hostpath、Local PV device、ZFS Local PV、LVM Local 
+ 本地引擎
+本地引擎可以从本地磁盘设备（依赖于NDM）或主机路径创建PV，也可基于集群节点上的LVM或ZFS创建PV
+适合内置可用性和可扩展性功能的应用程序，或者作业类的有状态工作负载
+基于节点上支持的存储机制，可选的动态Local PV包括 Local PV hostpath、Local PV device、ZFS Local PV、LVM Local 
 PV 和 Rawfile Local PV 这五种
-◼ 复制引擎
-◆复制卷，顾名思义，就是那些可以将数据同步复制到多个节点的卷
-◆复制引擎允许从复制节点范围内的任一节点上进行数据访问，并支持跨可用区进行复制
-◆复制卷通常还支持快照、克隆、扩展等功能
-◆基于节点上支持的存储机制，可选的复制引擎包括Mayastor、cStor和Jiva
+ 复制引擎
+复制卷，顾名思义，就是那些可以将数据同步复制到多个节点的卷
+复制引擎允许从复制节点范围内的任一节点上进行数据访问，并支持跨可用区进行复制
+复制卷通常还支持快照、克隆、扩展等功能
+基于节点上支持的存储机制，可选的复制引擎包括Mayastor、cStor和Jiva
 ```
 
 
 
 ```
 如何选择数据引擎
-◼ 应用程序处于生产状态且不需要存储级复制，则首选 LocalPV
-◼ 应用程序处于生产状态并且需要存储级复制，则首选 cStor
-◼ 应用程序较小、需要存储级复制但不需要快照或克隆，则首选 Jiva
-◼ 应用程序需要低延迟和接近磁盘的吞吐量，需要存储级复制，并且工作节点具有性能较高的CPU、RAM和
+ 应用程序处于生产状态且不需要存储级复制，则首选 LocalPV
+ 应用程序处于生产状态并且需要存储级复制，则首选 cStor
+ 应用程序较小、需要存储级复制但不需要快照或克隆，则首选 Jiva
+ 应用程序需要低延迟和接近磁盘的吞吐量，需要存储级复制，并且工作节点具有性能较高的CPU、RAM和
 NVME，那么 Mayastor 是首选如何选择数据引擎
-◼ 应用程序处于生产状态且不需要存储级复制，则首选 LocalPV
-◼ 应用程序处于生产状态并且需要存储级复制，则首选 cStor
-◼ 应用程序较小、需要存储级复制但不需要快照或克隆，则首选 Jiva
-◼ 应用程序需要低延迟和接近磁盘的吞吐量，需要存储级复制，并且工作节点具有性能较高的CPU、RAM和
+ 应用程序处于生产状态且不需要存储级复制，则首选 LocalPV
+ 应用程序处于生产状态并且需要存储级复制，则首选 cStor
+ 应用程序较小、需要存储级复制但不需要快照或克隆，则首选 Jiva
+ 应用程序需要低延迟和接近磁盘的吞吐量，需要存储级复制，并且工作节点具有性能较高的CPU、RAM和
 NVME，那么 Mayastor 是首选
 ```
 
@@ -1230,13 +1230,13 @@ NVME，那么 Mayastor 是首选
 
 ```
 NDM（Node Disk Manager）
-◼ 部署OpenEBS的过程中，NDM由专用DaemonSet编排运行于每个节点上
-◆负责发现裸设备并过滤掉不支持使用的设备，例如已经带有文件系统的磁盘
-◆需要特权模式，访问/dev、/proc和/sys目录来监视连接的设备，并使用各种探测器获取这些设备的详细信息
-◼ 根据过滤器（filters）检测附加到节点上的裸磁盘设备，并将它们识别为“块设备CRD”
-◆NDM支持使用include filters或exclude filters
-◆filter的配置保存于ConfigMap中
-◼ 基于节点上的裸磁盘设备提供PV的存储引擎，会依赖于NDM实现其功能，这包括Local PV device 和 cStor
+ 部署OpenEBS的过程中，NDM由专用DaemonSet编排运行于每个节点上
+负责发现裸设备并过滤掉不支持使用的设备，例如已经带有文件系统的磁盘
+需要特权模式，访问/dev、/proc和/sys目录来监视连接的设备，并使用各种探测器获取这些设备的详细信息
+ 根据过滤器（filters）检测附加到节点上的裸磁盘设备，并将它们识别为“块设备CRD”
+NDM支持使用include filters或exclude filters
+filter的配置保存于ConfigMap中
+ 基于节点上的裸磁盘设备提供PV的存储引擎，会依赖于NDM实现其功能，这包括Local PV device 和 cStor
 ```
 
 部署使用OpenEBS的基本流程
@@ -1495,11 +1495,11 @@ configMap：保存非敏感的配置，数据以明文存储
 ```
 ConfigMap和Secret是Kubernetes系统上两种特殊类型的存储卷
 
-◼ ConfigMap用于为容器中的应用提供配置数据以定制程序的行为，而敏感的配置信息，例如密钥、证书等则通常由Secret来配置
+ ConfigMap用于为容器中的应用提供配置数据以定制程序的行为，而敏感的配置信息，例如密钥、证书等则通常由Secret来配置
 
-◼ ConfigMap和Secret将相应的配置信息保存于资源对象中etcd，而后在Pod对象上支持以存储卷的形式将其挂载并加载相关的配置，从而降低了配置与镜像文件的耦合关系，提高了镜像复用能力
+ ConfigMap和Secret将相应的配置信息保存于资源对象中etcd，而后在Pod对象上支持以存储卷的形式将其挂载并加载相关的配置，从而降低了配置与镜像文件的耦合关系，提高了镜像复用能力
 
-◼ Kubernetes借助于ConfigMap对象实现了将配置文件从容器镜像中解耦，从而增强了工作负载的可移植性，使其配置更易于更改和管理，并避免了将配置数据硬编码到Pod配置清单中
+ Kubernetes借助于ConfigMap对象实现了将配置文件从容器镜像中解耦，从而增强了工作负载的可移植性，使其配置更易于更改和管理，并避免了将配置数据硬编码到Pod配置清单中
 
 此二者都属于名称空间级别，只能被同一名称空间中的Pod引用
 ```
@@ -1508,7 +1508,7 @@ configMap：保存非敏感的配置，数据以明文存储
 
 ConfigMap和Secret资源都是数据承载类的组件，是Kubernetes API的标准资源类型，是一等公民
 
-◼ 主要负责提供key-value格式的数据项，其值支持
+ 主要负责提供key-value格式的数据项，其值支持
 
 ​	  单行字符串：常用于保存环境变量值，或者命令行参数等
 
@@ -1518,24 +1518,24 @@ ConfigMap和Secret资源都是数据承载类的组件，是Kubernetes API的标
 
 ```
 资源规范中不使用spec字段，而是直接使用特定的字段嵌套定义key-value数据
-◆ConfigMap支持使用data或binaryData字段嵌套一至多个键值数据项
-◆Secret支持使用data或stringData（非base64编码的明文格式）字段嵌套一至多个键值数据项
-◼ 从Kubernetes v1.19版本开始，ConfigMap和Secret支持使用immutable字段创建不可变实例
+ConfigMap支持使用data或binaryData字段嵌套一至多个键值数据项
+Secret支持使用data或stringData（非base64编码的明文格式）字段嵌套一至多个键值数据项
+ 从Kubernetes v1.19版本开始，ConfigMap和Secret支持使用immutable字段创建不可变实例
 ```
 
 #### 在Pod中引用配置的方式
 
 环境变量
 
-◼ 将configmap对象上的某key的值赋值给（valueFrom）指定的环境变量
+ 将configmap对象上的某key的值赋值给（valueFrom）指定的环境变量
 
 卷
 
 在Pod上基于configMap卷插件引用configmap对象
 
-​	◼ 在Container上挂载configMap卷
+​	 在Container上挂载configMap卷
 
-​			◆每个kv会分别被映射为一个文件，文件名同key，value将成为文件内容
+​			每个kv会分别被映射为一个文件，文件名同key，value将成为文件内容
 
 #### configmap
 
@@ -1543,17 +1543,17 @@ ConfigMap和Secret资源都是数据承载类的组件，是Kubernetes API的标
 
 命令式命令
 
-◆ 字面量：kubectl create configmap NAME --from-literal=key1=value1
+ 字面量：kubectl create configmap NAME --from-literal=key1=value1
 
-◆ 从文件加载：kubectl create configmap NAME --from-file=[key=]/PATH/TO/FILE
+ 从文件加载：kubectl create configmap NAME --from-file=[key=]/PATH/TO/FILE
 
-◆ 从目录加载： kubectl create configmap NAME --from-file=[key=]/PATH/TO/DIR/
+ 从目录加载： kubectl create configmap NAME --from-file=[key=]/PATH/TO/DIR/
 
 配置文件
 
-◆命令式：kubectl create -f 
+命令式：kubectl create -f 
 
-◆声明式：kubectl apply -f
+声明式：kubectl apply -f
 
 ![image-20240331195142408](../images/image-20240331195142408.png)
 
@@ -1572,7 +1572,7 @@ kubectl create configmap nginx-cfg --from-file=my.conf=./myserver.conf   --from-
 
 命令式命令
 
-◼ kubectl create configmap nginx-confs --from-file=./nginx-conf.d/myserver.conf --from-file=status.cfg=./nginx
+ kubectl create configmap nginx-confs --from-file=./nginx-conf.d/myserver.conf --from-file=status.cfg=./nginx
 
 conf.d/myserver-status.cfg
 
@@ -1701,9 +1701,9 @@ Secret主要用于存储密钥、OAuth令牌和 SSH 密钥等敏感信息，这�
 
 **generic**
 
-◆kubectl create secret generic NAME [--type=string] [--from-file=[key=]source] [--from-literal=key1=value1]
+kubectl create secret generic NAME [--type=string] [--from-file=[key=]source] [--from-literal=key1=value1]
 
-◆除了后面docker-registry和tls命令之外的其它类型，都可以使用该命令中的--type选项进行定义，但有些类型有key的特
+除了后面docker-registry和tls命令之外的其它类型，都可以使用该命令中的--type选项进行定义，但有些类型有key的特
 
 定要求
 
@@ -1711,17 +1711,17 @@ Secret主要用于存储密钥、OAuth令牌和 SSH 密钥等敏感信息，这�
 
 **tls**
 
-◆kubectl create secret tls NAME --cert=path/to/cert/file --key=path/to/key/file
+kubectl create secret tls NAME --cert=path/to/cert/file --key=path/to/key/file
 
-◆通常，其保存cert文件内容的key为tls.crt，而保存private key的key为tls.key
+通常，其保存cert文件内容的key为tls.crt，而保存private key的key为tls.key
 
 
 
 **docker-registry**
 
-◆kubectl create secret docker-registry NAME --docker-username=user --docker-password=password --docker-email=email [--docker-server=string] [--from-file=[key=]source]
+kubectl create secret docker-registry NAME --docker-username=user --docker-password=password --docker-email=email [--docker-server=string] [--from-file=[key=]source]
 
-◆通常，从已有的json格式的文件加载生成的就是dockerconfigjson类型，命令行直接量生成的也是该类型
+通常，从已有的json格式的文件加载生成的就是dockerconfigjson类型，命令行直接量生成的也是该类型
 
 
 
@@ -1841,23 +1841,23 @@ spec:
 
 scret资源在Pod中引用的方式同样有两种
 
-◼ 环境变量
+ 环境变量
 
-◆ 引用Secret对象上特定的key，以valueFrom赋值给Pod上指定的环境变量
+ 引用Secret对象上特定的key，以valueFrom赋值给Pod上指定的环境变量
 
-◆在Pod上使用envFrom一次性导入Secret对象上的所有key-value，key（也可以统一附加特定前缀）即为环境变量名，
+在Pod上使用envFrom一次性导入Secret对象上的所有key-value，key（也可以统一附加特定前缀）即为环境变量名，
 
 value自动成为相应的变量值
 
-◼ secret卷
+ secret卷
 
-◆在Pod上将Secret对象引用为存储卷，而后整体由容器mount至某个目录下
+在Pod上将Secret对象引用为存储卷，而后整体由容器mount至某个目录下
 
 key转为文件名，value即为相应的文件内容
 
-◆在Pod上定义Secret卷时，仅引用其中的部分key，而后由容器mount至目录下
+在Pod上定义Secret卷时，仅引用其中的部分key，而后由容器mount至目录下
 
-◆在容器上仅mount Secret卷上指定的key
+在容器上仅mount Secret卷上指定的key
 
  注意：容器很可能会将环境变量打印到日志中，因而不建议以环境变量方式引用Secret中的数据
 
@@ -1869,7 +1869,7 @@ key转为文件名，value即为相应的文件内容
 
 dockercfg及dockerconfigjson类型的Secret主要用于从私有Image Registry中下载容器镜像
 
-◼ 其引用定义在pod.spec.imagePullSecrets字段上
+ 其引用定义在pod.spec.imagePullSecrets字段上
 
 ```yaml
 apiVersion: v1
@@ -1889,9 +1889,9 @@ spec:
 
 ### DownwardAPI 和 Projected
 
-◼ 与ConfigMap和Secret不同，DownwardAPI自身并非一种独立的API资源类型
+ 与ConfigMap和Secret不同，DownwardAPI自身并非一种独立的API资源类型
 
-◼ DownwardAPI只是一种将Pod的metadata、spec或status中的字段值注入到其内部Container里的方式
+ DownwardAPI只是一种将Pod的metadata、spec或status中的字段值注入到其内部Container里的方式
 
 DownwardAPI提供了两种方式用于将 POD 的信息注入到容器内部
 
@@ -1915,9 +1915,9 @@ DownwardAPI提供了两种方式用于将 POD 的信息注入到容器内部
 
 在容器上基于DownwardAPI引用Pod元数据，可通过两种字段完成
 
-◼ fieldRef：引用常规的元数据
+ fieldRef：引用常规的元数据
 
-◼ resourceFieldRef：引用同资源限制和资源需求相关的元数据
+ resourceFieldRef：引用同资源限制和资源需求相关的元数据
 
 ![image-20240331224013795](../images/image-20240331224013795.png)
 
@@ -1978,13 +1978,13 @@ Projected Volume是一种特殊的卷类型，它能够将已存在的多个卷�
 
 Projected Volume仅支持对如下四种类型的卷（数据源）进行投射操作，这类的卷一般都 是用于为容器提供预先定义好的数据
 
-◼Secret：投射Secret 对象
+Secret：投射Secret 对象
 
-◼ ConfigMap：投射ConfigMap对象
+ ConfigMap：投射ConfigMap对象
 
-◼ DownwardAPI：投射Pod元数据
+ DownwardAPI：投射Pod元数据
 
-◼ ServiceAccountToken：投射ServiceAccount Token
+ ServiceAccountToken：投射ServiceAccount Token
 
 正常情况我们把多个卷挂载到同一个目录，他们会互相覆盖，要使用Projected Projected 类似联合文件系统挂载
 
@@ -2024,17 +2024,17 @@ Projected Volume仅支持对如下四种类型的卷（数据源）进行投射�
 
 其后面Pod上的服务
 
-◼ 集群内部客户端
+ 集群内部客户端
 
-​	◆其它的Pod对象
+​	其它的Pod对象
 
-​	◆工作节点上的进程
+​	工作节点上的进程
 
-​	◆独立运行的容器中的进程
+​	独立运行的容器中的进程
 
-◼ 集群外部客户端
+ 集群外部客户端
 
-​	◆集群外部主机上的进程
+​	集群外部主机上的进程
 
 
 
@@ -2121,33 +2121,33 @@ Service的模式：取决kube proxy的配置；
 
 每创建一个service 就会创建一个Endpoints
 
-◼ Endpoints对象上保存Service匹配到的所有Pod的IP和Port信息
+ Endpoints对象上保存Service匹配到的所有Pod的IP和Port信息
 
-◼后端每个Pod的每次变动，都需更新整个Endpoints对象（牵一发而动全身），并需要将该对象同步至每个节点的kube-proxy
+后端每个Pod的每次变动，都需更新整个Endpoints对象（牵一发而动全身），并需要将该对象同步至每个节点的kube-proxy
 
 ##### Endpoints和EndpointSlice
 
-◼ 即便只有一个Pod的IP等信息发生变动，也必须向集群中的每个kube-proxy发送整个endpoints对象
+ 即便只有一个Pod的IP等信息发生变动，也必须向集群中的每个kube-proxy发送整个endpoints对象
 
 存储在etcd中的对象的默认大小限制为1.5MB，这也决定了单个Endpoints对象的存储上限
 
-◆至多可以存储5000个左右的端点信息
+至多可以存储5000个左右的端点信息
 
 极端场景
 
-◆一个由2000个节点组成的集群中，更新一个有着5000个Pod IP的Endpoints对象，需要发送3GB的数据
+一个由2000个节点组成的集群中，更新一个有着5000个Pod IP的Endpoints对象，需要发送3GB的数据
 
-◆若以滚动更新机制，一次替换一个Pod的信息，更新这个Endpoints对象需要发送15T的数据
+若以滚动更新机制，一次替换一个Pod的信息，更新这个Endpoints对象需要发送15T的数据
 
 EndpointSlice资源通过将Endpoints切分为多片来解决上述问题
 
-◆自Kubernetes v1.16引入
+自Kubernetes v1.16引入
 
-◆每个端点信息的变动，仅需要更新和发送一个EndpointSlice，而非整个Endpoints
+每个端点信息的变动，仅需要更新和发送一个EndpointSlice，而非整个Endpoints
 
-◆每个EndpointSlice默认存储100个端点信息，不会触达etcd对单个对象的存储限制
+每个EndpointSlice默认存储100个端点信息，不会触达etcd对单个对象的存储限制
 
-◆可在kube-controller-manager程序上使用“--max-endpoints-per-slice”选项进行配置
+可在kube-controller-manager程序上使用“--max-endpoints-per-slice”选项进行配置
 
 ```
 后端每个Pod的每次变动，都需更新整个Endpoints对象，并需要将该对象同步至每个节点，这就意味着，每当后端pod信息改变每个节点都要去api-service上读取一份新的数据，etcd中一个键值最大1.5m，一个enbpoints可以存5000个pod地址。
@@ -2166,11 +2166,11 @@ EndpointSlice资源通过将Endpoints切分为多片来解决上述问题
 
 负载均衡器入口：ClusterIP及相关的Service Port、NodePort（每个节点的Node IP都可用）
 
-◆ 根据通信需求，确定选择的类型
+ 根据通信需求，确定选择的类型
 
-◼ 标签选择器：用于筛选Pod，并基于筛选出的Pod的IP生成后端端点列表（被调度的上游端点）
+ 标签选择器：用于筛选Pod，并基于筛选出的Pod的IP生成后端端点列表（被调度的上游端点）
 
-◼ Service类型的专有配置
+ Service类型的专有配置
 
 #### 标签和标签选择器
 
@@ -2188,15 +2188,15 @@ EndpointSlice资源通过将Endpoints切分为多片来解决上述问题
 
 **标签选择器**：基于标签筛选对象的**过滤条件**，支持两种类型
 
-◼ 基于等值关系的选择器
+ 基于等值关系的选择器
 
-◆操作符：=或==、!=
+操作符：=或==、!=
 
-◼ 基于集合关系的选择器
+ 基于集合关系的选择器
 
-◆操作符：in、notin和exists
+操作符：in、notin和exists
 
-◆使用格式：KEY in (VALUE1, VALUE2, …)、 KEY notin (VALUE1, VALUE2, …)、KEY 和 !KEY
+使用格式：KEY in (VALUE1, VALUE2, …)、 KEY notin (VALUE1, VALUE2, …)、KEY 和 !KEY
 
 
 
@@ -2317,7 +2317,7 @@ spec:
 
 流量策略一：Cluster，表示在整个Kubernetes集群范围内调度；
 
-◼ 该流量策略下，请求报文从某个节点上的NodePort进入，该节点上的Service会将其调度至任何一个可用后端
+ 该流量策略下，请求报文从某个节点上的NodePort进入，该节点上的Service会将其调度至任何一个可用后端
 
 Pod之上，而不关心Pod运行于哪个节点
 
@@ -2325,11 +2325,11 @@ Pod之上，而不关心Pod运行于哪个节点
 
 流量策略二：Local，表示仅将请求调度至当前节点上运行的可用后端端点；
 
-◼ 该流量策略下，请求报文从某节点NodePort进入后，该节点上的Service仅会将请求调度至当前节点上适配到
+ 该流量策略下，请求报文从某节点NodePort进入后，该节点上的Service仅会将请求调度至当前节点上适配到
 
 该Service的后端端点
 
-◼ 仅应该从运行有目标Service对象后端Pod对象的节点的NodePort发起访问
+ 仅应该从运行有目标Service对象后端Pod对象的节点的NodePort发起访问
 
 ![image-20240402201517206](../images/image-20240402201517206.png)
 
@@ -2369,13 +2369,13 @@ pod不能直接返回，比如客户端请求node1，node1上没有服务转发�
 
 在Service上使用ExternalIP
 
-◼ Service可通过使用节点上配置的辅助IP地址接入集群外部客户端流量
+ Service可通过使用节点上配置的辅助IP地址接入集群外部客户端流量
 
-◼ 流量入口仅能是配置有该IP地址的节点，其它节点无效，因而此时在节点间无负载均衡的效果
+ 流量入口仅能是配置有该IP地址的节点，其它节点无效，因而此时在节点间无负载均衡的效果
 
-◼ external IP所在的节点故障后，该流量入口失效，除非将该IP地址转移配置到其它节点
+ external IP所在的节点故障后，该流量入口失效，除非将该IP地址转移配置到其它节点
 
-◼ 是除了LoadBalancer和NodePort外，接入外部流量的又一种方式
+ 是除了LoadBalancer和NodePort外，接入外部流量的又一种方式
 
 ![image-20240402203950837](../images/image-20240402203950837.png)
 
@@ -2394,24 +2394,24 @@ pod不能直接返回，比如客户端请求node1，node1上没有服务转发�
 
 非云环境中的LoadBalancer
 
-◼ 部署于裸机或类似裸机环境中的Kubernetes集群，缺少可用的LBaaS服务
+ 部署于裸机或类似裸机环境中的Kubernetes集群，缺少可用的LBaaS服务
 
-◼ MetalLB和OpenELB等项目为此提供了解决方案
+ MetalLB和OpenELB等项目为此提供了解决方案
 
 MetalLB
 
-◼ A network load-balancer implementation for Kubernetes using standard routing protocols
+ A network load-balancer implementation for Kubernetes using standard routing protocols
 
-◼ MetalLB核心功能的实现依赖于两种机制
+ MetalLB核心功能的实现依赖于两种机制
 
 ```
 Address Allocation（地址分配）：基于用户配置的地址池，为用户创建的LoadBalancer分配IP地址，并配置在节点上
 External Announcement（对外公告）：让集群外部的网络了解新分配的IP地址，MetalLB使用ARP、NDP或BGP实现
 ```
 
-◼ MetalLB 可配置为在二层模式或BGP 模式下运行
+ MetalLB 可配置为在二层模式或BGP 模式下运行
 
-◼ 二层模式（ARP/NDP）
+ 二层模式（ARP/NDP）
 
 ```
 LoadBalancer IP地址配置在某一个节点上，并使用ARP（IPv4）或NDP（IPv6）对外公告
@@ -2421,9 +2421,9 @@ LoadBalancer IP地址配置在某一个节点上，并使用ARP（IPv4）或NDP�
 并未真正实现负载均衡，存在性能瓶颈，且故障转移存在秒级的延迟
 ```
 
-◼ BGP模式
+ BGP模式
 
-◆集群中的所有节点与本地网络中的BGP Router建立BGP对等会话，通告LoadBalancer IP，从而告知Router如何进行流量路由，可以实现跨多个节点的真正意义上的负载均衡
+集群中的所有节点与本地网络中的BGP Router建立BGP对等会话，通告LoadBalancer IP，从而告知Router如何进行流量路由，可以实现跨多个节点的真正意义上的负载均衡
 
 
 
@@ -2435,11 +2435,11 @@ LoadBalancer IP地址配置在某一个节点上，并使用ARP（IPv4）或NDP�
 
 部署MetalLB
 
-◆默认使用的名称空间为metallb-system
+默认使用的名称空间为metallb-system
 
-◆部署两个组件：controller和speaker，前者负责地址分配，后者负责对外公告
+部署两个组件：controller和speaker，前者负责地址分配，后者负责对外公告
 
-◆创建多个CRD，包括 IPAddressPool、L2Advertisement、BGPPeer和BGPAdvertisement等
+创建多个CRD，包括 IPAddressPool、L2Advertisement、BGPPeer和BGPAdvertisement等
 
 
 
@@ -2768,7 +2768,7 @@ Service的各类型中，ClusterIP、NodePort和LoadBalancer都为其Service配�
 
 广义上，那些没有ClusterIP的Service则称为Headless Service，它们又可以为分两种情形
 
-◼ 有标签选择器，或者没有标签选择器，但有着与Service对象同名的Endpoint资源
+ 有标签选择器，或者没有标签选择器，但有着与Service对象同名的Endpoint资源
 
 ```
 Service的DNS名称直接解析为后端各就绪状态的Pod的IP地址，调度功能也将由DNS完成
@@ -2779,7 +2779,7 @@ Service的DNS名称直接解析为后端各就绪状态的Pod的IP地址，调�
 
 无标签选择器且也没有与Service对象同名的Endpoint资源
 
-◆Service的DNS名称将会生成一条CNAME记录，对应值由Service对象上的spec.externalName字段指定
+Service的DNS名称将会生成一条CNAME记录，对应值由Service对象上的spec.externalName字段指定
 
 
 
@@ -2952,11 +2952,11 @@ replicas和selector的变更不会导致podTemplate的hash变动
 
 
 ```
-◼ 更新状态：kubectl rollout status (TYPE NAME | TYPE/NAME) [flags] [options]
-◼ 更新历史：kubectl rollout history (TYPE NAME | TYPE/NAME) [flags] [options]
+ 更新状态：kubectl rollout status (TYPE NAME | TYPE/NAME) [flags] [options]
+ 更新历史：kubectl rollout history (TYPE NAME | TYPE/NAME) [flags] [options]
 
-◼ 回滚到前一版本： kubectl rollout undo (TYPE NAME | TYPE/NAME) 
-◼ 回滚到指定版本： kubectl rollout undo (TYPE NAME | TYPE/NAME) --to-revision=X
+ 回滚到前一版本： kubectl rollout undo (TYPE NAME | TYPE/NAME) 
+ 回滚到指定版本： kubectl rollout undo (TYPE NAME | TYPE/NAME) --to-revision=X
 ```
 
 
@@ -3304,13 +3304,13 @@ Job资源同样需要标签选择器和Pod模板，但它不需要指定replicas
 
 ob资源会为其Pod对象自动添加“job-name=JOB_NAME”和“controller-uid=UID”标签，并使用标签选择器完成对controller-uid标签的关联，因此，selector并非必选字段
 
-◼ Pod的命名格式：`$(job-name)-$(index)-$(random-string)，其中的$(index)字段取值与completions和completionMode有关
+ Pod的命名格式：`$(job-name)-$(index)-$(random-string)，其中的$(index)字段取值与completions和completionMode有关
 
  注意
 
-◆ Job资源所在群组为“batch/v1”
+ Job资源所在群组为“batch/v1”
 
-◆ Job资源中，Pod的RestartPolicy的取值 只能为Never或OnFailure 
+ Job资源中，Pod的RestartPolicy的取值 只能为Never或OnFailure 
 
 
 
@@ -3699,9 +3699,9 @@ TLS Secret必须包含名为tls.crt和 的密钥tls.key，它们分别含有TLS�
 
 ```
 常用选项
-◆ --annotation=[]：提供注解，格式为“annotation=value”
-◆ --rule=[]：代理规则，格式为“host/path=service:port[,tls=secretname]”
-◆ --class=‘’：该Ingress适配的Ingress Class
+ --annotation=[]：提供注解，格式为“annotation=value”
+ --rule=[]：代理规则，格式为“host/path=service:port[,tls=secretname]”
+ --class=‘’：该Ingress适配的Ingress Class
 ```
 
 
@@ -3799,9 +3799,9 @@ kubectl create ingress ingress-wordpress --rule='www.zedking.org/*=wordpress:80,
 **1**.**nginx.ingress.kubernetes.io/canary-by-header**：基于该Annotation中指定Request Header进行流量切分，适用于灰度发布以及A/B测试
 
 ```bash
-◆在请求报文中，若存在该Header且其值为always时，请求将会被发送到Canary版本
-◆若存在该Header且其值为never时，请求将不会被发送至Canary版本
-◆对于任何其它值，将忽略该Annotation指定的Header，并通过优先级将请求与其他金丝雀规则进行优先级的比较
+在请求报文中，若存在该Header且其值为always时，请求将会被发送到Canary版本
+若存在该Header且其值为never时，请求将不会被发送至Canary版本
+对于任何其它值，将忽略该Annotation指定的Header，并通过优先级将请求与其他金丝雀规则进行优先级的比较
 #指定表头名，但值固定。
 可以使用1规则指定标头名，然后结合2规则指定表头值，也可以结合3规则指定正则匹配对应的值
 ```
@@ -3817,8 +3817,8 @@ kubectl create ingress ingress-wordpress --rule='www.zedking.org/*=wordpress:80,
 **3.nginx.ingress.kubernetes.io/canary-by-header-pattern**
 
 ```
-◆同canary-by-header-value的功能类似，但该Annotation基于正则表达式匹配Request Header的值
-◆若该Annotation与canary-by-header-value同时存在，则该Annotation会被忽略
+同canary-by-header-value的功能类似，但该Annotation基于正则表达式匹配Request Header的值
+若该Annotation与canary-by-header-value同时存在，则该Annotation会被忽略
 ```
 
 
@@ -3830,8 +3830,8 @@ kubectl create ingress ingress-wordpress --rule='www.zedking.org/*=wordpress:80,
 基于服务权重进行流量切分，适用于蓝绿部署，权重范围0 - 100按百分比将请求路由到Canary Ingress中指定的服务
 
 ```
-◆权重为 0 意味着该金丝雀规则不会向Canary入口的服务发送任何请求
-◆权重为100意味着所有请求都将被发送到 Canary 入口
+权重为 0 意味着该金丝雀规则不会向Canary入口的服务发送任何请求
+权重为100意味着所有请求都将被发送到 Canary 入口
 ```
 
 
@@ -3839,9 +3839,9 @@ kubectl create ingress ingress-wordpress --rule='www.zedking.org/*=wordpress:80,
 **5.nginx.ingress.kubernetes.io/canary-by-cookie**：基于 cookie 的流量切分，适用于灰度发布与 A/B 测试
 
 ```
-◆cookie的值设置为always时，它将被路由到Canary入口
-◆cookie的值设置为 never时，请求不会被发送到Canary入口
-◆对于任何其他值，将忽略 cookie 并将请求与其他金丝雀规则进行优先级的比较
+cookie的值设置为always时，它将被路由到Canary入口
+cookie的值设置为 never时，请求不会被发送到Canary入口
+对于任何其他值，将忽略 cookie 并将请求与其他金丝雀规则进行优先级的比较
 ```
 
 **规则的应用次序**
@@ -4174,25 +4174,25 @@ API Server中的鉴权框架及启用的鉴权模块负责鉴权
 
 API Server是Kubernetes集群的网关，是能够与etcd通信惟一入口；
 
-◼ kube-controller-manager、kube-scheduler、kubelet、kube-proxy，以及后续部署的集群插件CoreDNS、Project 
+ kube-controller-manager、kube-scheduler、kubelet、kube-proxy，以及后续部署的集群插件CoreDNS、Project 
 
 Calico等，彼此间**互不**通信，彼此间的所有协作均经由API Server的REST API进行，它们都是API Server的客户
 
 端
 
-◼ 确保对API Server的安全访问至关重要
+ 确保对API Server的安全访问至关重要
 
-◆客户端对API Server的访问应经过身份验证及权限检查；
+客户端对API Server的访问应经过身份验证及权限检查；
 
-◆为防止中间人攻击，各类客户端与API Server间的通信都应使用TLS进行加密
+为防止中间人攻击，各类客户端与API Server间的通信都应使用TLS进行加密
 
  各kubelet也会监听一些套接字，提供一个小型的REST API
 
-◼ 10250是具有所在节点上Pod管理权限的读写端口，应谨慎管理
+ 10250是具有所在节点上Pod管理权限的读写端口，应谨慎管理
 
-◼ 10255仅提供只读操作，是REST API的子集
+ 10255仅提供只读操作，是REST API的子集
 
-◼ 另外，10248是本地healthz端点使用的端口
+ 另外，10248是本地healthz端点使用的端口
 
 
 
@@ -4602,9 +4602,9 @@ kubectl get pods --kubeconfig=/root/crt/kubeusers.conf --context='lxj@x509'
 若设置了KUBECONFIG环境变量，则将其值用作应合并的文件列表；处理规则
 
 ```
-◆忽略不存的文件
-◆遇到内容无法反序列化的文件时，将生成错误信息
-◆文件列表中，第一个设定了特定值或映射键(map key)的文件是为生效文件
+忽略不存的文件
+遇到内容无法反序列化的文件时，将生成错误信息
+文件列表中，第一个设定了特定值或映射键(map key)的文件是为生效文件
 创建一个键时，其将保存于列表中的第一个文件中
 ```
 
@@ -4787,17 +4787,17 @@ kubeadm部署的集群，默认启用了Node和RBAC
 
 ```
 RBAC基础概念
-◼ 实体（Entity）：在RBAC也称为Subject，通常指的是User、Group或者是ServiceAccount；
-◼ 角色（Role）：承载资源操作权限的容器；
-◼ 资源（Resource）：在RBAC中也称为Object，指代Subject期望操作的目标，例如Secret、Pod及Service对象等；
-◆仅限于/api/v1/…及/apis/<group>/<version>/…起始的路径；
-◆其它路径对应的端点均被视作“非资源类请求（Non-Resource Requests）”，例如/api或/healthz等端点；
-◼ 动作（Actions）：Subject可以于Object上执行的特定操作，具体的可用动作取决于Kubernetes的定义；
-◆资源型对象
+ 实体（Entity）：在RBAC也称为Subject，通常指的是User、Group或者是ServiceAccount；
+ 角色（Role）：承载资源操作权限的容器；
+ 资源（Resource）：在RBAC中也称为Object，指代Subject期望操作的目标，例如Secret、Pod及Service对象等；
+仅限于/api/v1/…及/apis/<group>/<version>/…起始的路径；
+其它路径对应的端点均被视作“非资源类请求（Non-Resource Requests）”，例如/api或/healthz等端点；
+ 动作（Actions）：Subject可以于Object上执行的特定操作，具体的可用动作取决于Kubernetes的定义；
+资源型对象
 	只读操作：get、list、watch等
 	读写操作：create、update、patch、delete、deletecollection等
-◆非资源型端点仅支持get操作
-◼ 角色绑定（Role Binding）：将角色关联至实体上，它能够将角色具体的操作权限赋予给实体；
+非资源型端点仅支持get操作
+ 角色绑定（Role Binding）：将角色关联至实体上，它能够将角色具体的操作权限赋予给实体；
 ```
 
 ```
@@ -5419,24 +5419,24 @@ Cllium：Vxlan / 路由ebpf			   BGP分发路由	 网络策略		  api-server   �
 **底层系统环境限制**
 
 ```
-◼ 公有云环境多有专有的实现，例如Google GCE、Azure CNI、AWS VPC CNI和Aliyun Terway等，它们通常是
+ 公有云环境多有专有的实现，例如Google GCE、Azure CNI、AWS VPC CNI和Aliyun Terway等，它们通常是
 相应环境上较佳的选择
-◼ 虚拟化环境限制较多，除叠加网络模型别无选择，可用有Flannel vxlan、Calico ipip、Weave和Antrea等
-◼ 物理机环境几乎支持任何类型的网络插件，此时一般应该选择性能较好的的Calico BGP、Flannel host-gw或DAMM IPVLAN等
+ 虚拟化环境限制较多，除叠加网络模型别无选择，可用有Flannel vxlan、Calico ipip、Weave和Antrea等
+ 物理机环境几乎支持任何类型的网络插件，此时一般应该选择性能较好的的Calico BGP、Flannel host-gw或DAMM IPVLAN等
 ```
 
 **容器网络功能需求**
 
 ```
-◼ 支持NetworkPolicy的解决方案以Calico、WeaveNet和Cilium为代表，而且后两个支持节点到节点间的通信加密
-◼ 而大量Pod需要与集群外部资源互联互通时应该选择承载网络模型一类的解决方案
+ 支持NetworkPolicy的解决方案以Calico、WeaveNet和Cilium为代表，而且后两个支持节点到节点间的通信加密
+ 而大量Pod需要与集群外部资源互联互通时应该选择承载网络模型一类的解决方案
 ```
 
 **容器网络性能需求**
 
 ```
-◼ Overlay网络中的协议报文有隧道开销，性能略差，而Underlay网络则几乎不存这方面的问题
-◼ 但Overlay或Underlay路由模型的网络插件支持较快的Pod创建速度，而Underlay模型中IPVLAN或MACVLAN模
+ Overlay网络中的协议报文有隧道开销，性能略差，而Underlay网络则几乎不存这方面的问题
+ 但Overlay或Underlay路由模型的网络插件支持较快的Pod创建速度，而Underlay模型中IPVLAN或MACVLAN模
 式中较慢
 ```
 
@@ -5711,11 +5711,11 @@ Typha
 支持的CRD包括BGPConfiguration、BGPFilter、BGPPeer、BlockAffinity、CalicoNodeStatus、ClusterInformation、FelixConfiguration、GlobalNetworkPolicy、GlobalNetworkSet、HostEndpoint、IPAMBlock、IPAMConfig、IPAMHandle、IPPool、IPReservation、NetworkPolicy、NetworkSet和KubeControllersConfiguration等
 
 ```
-◆BGPConfiguration：全局BGP配置，用于设定AS（自治系统）编号、node mesh，以及用于通告ClusterIP的设置
-◆FelixConfiguration：Felix相关的低级别配置，包括iptables、MTU和路由协议等
-◆GlobalNetworkPolicy：全局网络策略，生效于整个集群级别；
-◆GlobalNetworkSet：全局网络集，是指可由GlobalNetworkPolicy引用的外部网络IP列表或CIDR列表；
-◆IPPool：IP地址池及相关选项，包括要使用的路由协议（IPIP、VXLAN或Native）；一个集群支持使用多个Pool；
+BGPConfiguration：全局BGP配置，用于设定AS（自治系统）编号、node mesh，以及用于通告ClusterIP的设置
+FelixConfiguration：Felix相关的低级别配置，包括iptables、MTU和路由协议等
+GlobalNetworkPolicy：全局网络策略，生效于整个集群级别；
+GlobalNetworkSet：全局网络集，是指可由GlobalNetworkPolicy引用的外部网络IP列表或CIDR列表；
+IPPool：IP地址池及相关选项，包括要使用的路由协议（IPIP、VXLAN或Native）；一个集群支持使用多个Pool；
 ```
 
 #### Calico数据存储模式：Kubernetes
@@ -5734,7 +5734,7 @@ Pod内的一端，通常名称格式为“etho@ifN”，其中的n是驻留在�
 
 驻留宿主机的一端，名称格式为“caliXXXXXXXXXXX@ifN”，其中的11位X是经由函数计算生成，而N则是注入Pod网络名称空间中的对端的ip link编号
 
-◼ Pod网络名称空间中，会生成独特的默认路由，将网关指向169.254.1.1
+ Pod网络名称空间中，会生成独特的默认路由，将网关指向169.254.1.1
 
 ![image-20240409160236452](../images/image-20240409160236452.png)
 
@@ -5760,11 +5760,11 @@ Calico为每个Pod创建一组veth pair，一端注入Pod网络名称空间，�
 
 Calico支持多种路由模式
 
-◼ Native：原生路由，无隧道封装
+ Native：原生路由，无隧道封装
 
-◼ IP-in-IP：IPIP隧道模式，开销较小的隧道协议
+ IP-in-IP：IPIP隧道模式，开销较小的隧道协议
 
-◼ VXLAN：VXLAN隧道模式
+ VXLAN：VXLAN隧道模式
 
 ![image-20240410090704185](../images/image-20240410090704185.png)
 
@@ -5882,30 +5882,30 @@ Calico在各节点间基于BGP传播路由信息
 BGP是路由器间交换路由信息的标准路由协议
 
 ```
-◆iBGP：Interior Border Gateway Protocol，负责在同一AS内的BGP路由器间传播路由，它通过递归方式进行路径选择
-◆eBGP： Exterior Border Gateway Protocol，用于在不同AS间传播BGP路由，它基于hop-by-hop机制进行路径选择
+iBGP：Interior Border Gateway Protocol，负责在同一AS内的BGP路由器间传播路由，它通过递归方式进行路径选择
+eBGP： Exterior Border Gateway Protocol，用于在不同AS间传播BGP路由，它基于hop-by-hop机制进行路径选择
 ```
 
-◼ 每个路由器都存在一到多个BGP Peer（对等端）
+ 每个路由器都存在一到多个BGP Peer（对等端）
 
-◼ Calico Node能够基于BGP协议将物理路由器作为BGP Peer
+ Calico Node能够基于BGP协议将物理路由器作为BGP Peer
 
 **BGP的常用拓扑**
 
 Full-mesh
 
-◆启用BGP时，Calico默认在所有节点间建立一个AS（64512），并基于iBGP为它们创建full-mesh连接
+启用BGP时，Calico默认在所有节点间建立一个AS（64512），并基于iBGP为它们创建full-mesh连接
 
-◆该模式较适用于集群规模较小（100个节点以内）的场景
+该模式较适用于集群规模较小（100个节点以内）的场景
 
 Route Reflectors
 
 ```
-◆在大规模的iBGP场景中， BGP route reflectors能显著降低每个节点需要维护的BGP Peer的数量
+在大规模的iBGP场景中， BGP route reflectors能显著降低每个节点需要维护的BGP Peer的数量
 
-◆可选择几个节点作为BGP RR，并在这些RR之间建立full mesh拓扑
+可选择几个节点作为BGP RR，并在这些RR之间建立full mesh拓扑
 
-◆其它节点只需要同这些RR之间建立Peer连接即可
+其它节点只需要同这些RR之间建立Peer连接即可
 ```
 
 
