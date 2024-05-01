@@ -10,7 +10,7 @@ kubectl apply -f deploy/
 
 ### 设定Jenkins能够解析外部域名（可选）
 
-修改coredns的configmap类似如下内容，以确保集群内部能解析Jenkins服务的名称jenkins.magedu.com和jenkins-jnlp.magedu.com，且自动将其解析为相应Service的ClusterIP。
+修改coredns的configmap类似如下内容，以确保集群内部能解析Jenkins服务的名称jenkins.lxj.com和jenkins-jnlp.magedu.com，且自动将其解析为相应Service的ClusterIP。
 
 ```
 apiVersion: v1
@@ -50,8 +50,7 @@ data:
 
 第一个：测试于Pod中运行slave
 ```
-// Author: "MageEdu <mage@magedu.com>"
-// Site: www.magedu.com
+
 pipeline {
     agent {
         kubernetes {
