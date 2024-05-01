@@ -254,7 +254,7 @@ Jenkins：
         #!/bin/sh
         echo "Fetch the code..."
         rm -rf ./*
-        git clone https://gitee.com/mageedu/spring-boot-helloWorld.git
+        git clone https://gitee.com/lxj/spring-boot-helloWorld.git
 
         # sed -i 's@http://deb.debian.org/debian@https://repo.huaweicloud.com/debian@gi' /etc/apt/sources.list 
 
@@ -266,7 +266,7 @@ Jenkins：
 
 
 
-    curl -XPOST -d "EVENT" http://jenkins03.magedu.com:8080/project/spring-boot-helloworld 
+    curl -XPOST -d "EVENT" http://jenkins03.lxj.com:8080/project/spring-boot-helloworld 
 
     00631cfab94a56f543e60712b1f7527d
 
@@ -349,7 +349,7 @@ Jenkins：
 
         #!/bin/bash
 
-        sed -i "s#__IMAGE__#registry.magedu.com/ikubernetes/${JOB_NAME}:${GIT_COMMIT}#gi" deploy/all-in-one.yaml
+        sed -i "s#__IMAGE__#registry.lxj.com/ikubernetes/${JOB_NAME}:${GIT_COMMIT}#gi" deploy/all-in-one.yaml
 
         kubectl --server ${K8S_API_SERVER} --insecure-skip-tls-verify=true --token=${HELLO_ADMIN_TOKEN} apply -f deploy/all-in-one.yaml
 
@@ -418,7 +418,7 @@ Jenkins：
 
     Generic Webhook
 
-    ~# curl -X POST -H "Content-Type: application/json" -d '{ "ref": "refs/tags/v1.0.2" }' -vs http://jenkins03.magedu.com:8080/generic-webhook-trigger/invoke?token="12345678900987654321"
+    ~# curl -X POST -H "Content-Type: application/json" -d '{ "ref": "refs/tags/v1.0.2" }' -vs http://jenkins03.lxj.com:8080/generic-webhook-trigger/invoke?token="12345678900987654321"
 
 
     SECf84aed48ec853464c1995a1a62305a77f6c3f843e67fb93808653d214ebe47b2
@@ -472,35 +472,35 @@ Sonar:
     
     Docker中运行的Agent
         ~# docker run \
-            --add-host jenkins.magedu.com:172.29.2.9 \
-            --hostname agent01.magedu.com \
+            --add-host jenkins.lxj.com:172.29.2.9 \
+            --hostname agent01.lxj.com \
             --init \
             jenkins/inbound-agent:alpine-jdk11 \
-            -url http://jenkins.magedu.com:8080 \
+            -url http://jenkins.lxj.com:8080 \
             -workDir=/home/jenkins/agent \
             5c06bf2f3c27a63b51061d051fc060109a3433a3c5806c7c4d60e2571dbc1a23 \
-            agent01.magedu.com
+            agent01.lxj.com
 
 
         以root用户的身份运行的agent
 
         ~# docker run \
-            --add-host jenkins.magedu.com:172.29.2.9 \
+            --add-host jenkins.lxj.com:172.29.2.9 \
             --user root \
             --init \
             jenkins/inbound-agent:alpine-jdk11 \
-            -url http://jenkins.magedu.com:8080 \
+            -url http://jenkins.lxj.com:8080 \
             -workDir=/appdata/jenkins/ \
             3da41b028c213b95c354241cffcfaa512337ddbb84a63d6f989f5fff5c9803cb \
-            agent02.magedu.com
+            agent02.lxj.com
 
 
         SSH Agent：
 
-        ~# JENKINS_AGENT_SSH_PUBKEY='ssh-rsa ……Wc= root@lab03.magedu.com'
+        ~# JENKINS_AGENT_SSH_PUBKEY='ssh-rsa ……Wc= root@lab03.lxj.com'
         ~# docker container run \
-            --add-host jenkins.magedu.com:172.29.7.1 \
-            --hostname ssh-agent01.magedu.com \
+            --add-host jenkins.lxj.com:172.29.7.1 \
+            --hostname ssh-agent01.lxj.com \
             --publish 22022:22 \
             jenkins/ssh-agent:jdk11 \
             ${JENKINS_AGENT_SSH_PUBKEY}
@@ -520,7 +520,7 @@ ExecStart=
 ExecStart=/usr/bin/dockerd -H fd:// -H tcp://0.0.0.0:2376
 
 测试访问：
-    ~#  curl -Ss docker01.magedu.com:2376/version | jq .
+    ~#  curl -Ss docker01.lxj.com:2376/version | jq .
 
 
 
@@ -533,14 +533,14 @@ ExecStart=/usr/bin/dockerd -H fd:// -H tcp://0.0.0.0:2376
 
 
 ~# docker run \
-    --add-host jenkins.magedu.com:172.29.7.1 \
-    --hostname agent01.magedu.com \
+    --add-host jenkins.lxj.com:172.29.7.1 \
+    --hostname agent01.lxj.com \
     --init \
     jenkins/inbound-agent:alpine-jdk11 \
-    -url http://jenkins.magedu.com:8080 \
+    -url http://jenkins.lxj.com:8080 \
     -workDir=/home/jenkins/agent \
     5c06bf2f3c27a63b51061d051fc060109a3433a3c5806c7c4d60e2571dbc1a23 \
-    agent01.magedu.com
+    agent01.lxj.com
 
 
 
@@ -565,7 +565,7 @@ psql (12.12 (Ubuntu 12.12-0ubuntu0.20.04.1))
 Type "help" for help.
 
 # 创建数据库角色sonarqube
-postgres=# CREATE USER sonarqube WITH ENCRYPTED PASSWORD 'magedu.com';
+postgres=# CREATE USER sonarqube WITH ENCRYPTED PASSWORD 'lxj.com';
 CREATE ROLE
 
 # 创建数据库sonarqube，并设定其隶属于sonarqube角色；
@@ -577,7 +577,7 @@ postgres=# GRANT ALL PRIVILEGES ON DATABASE sonarqube TO sonarqube;
 GRANT
 
 # 若有必要，可以为管理员postgres用户设置必要的密码
-postgres=# ALTER USER postgres WITH ENCRYPTED PASSWORD 'www.magedu.com';
+postgres=# ALTER USER postgres WITH ENCRYPTED PASSWORD 'www.lxj.com';
 ALTER ROLE
 
 postgres=# \q
@@ -609,7 +609,7 @@ logout
 
 # 修改连接数据库的账号和密码
 sonar.jdbc.username=sonarqube
-sonar.jdbc.password=magedu.com
+sonar.jdbc.password=lxj.com
 
 # 修改数据库相关的URL，这里以此前配置的postgresql为例，其中的localhost为DB服务器的地址，而sonarqube为数据库名称；
 sonar.jdbc.url=jdbc:postgresql://localhost/sonarqube
@@ -699,7 +699,7 @@ pipeline {
     stages {
         stage('Source') {
             steps {
-                git branch: 'main', url: 'http://git.magedu.com/devops/spring-boot-helloWorld.git'
+                git branch: 'main', url: 'http://git.lxj.com/devops/spring-boot-helloWorld.git'
             }
         }        
         stage('Build') {
@@ -802,7 +802,7 @@ pipeline {
     stages {
         stage('Source') {
             steps {
-                git branch: 'main', url: 'http://git.magedu.com/devops/spring-boot-helloWorld.git'
+                git branch: 'main', url: 'http://git.lxj.com/devops/spring-boot-helloWorld.git'
             }
         }        
         stage('Build') {
@@ -829,7 +829,7 @@ pipeline {
         maven 'maven-3.9.2'
     }
     environment {
-        codeRepo="http://git.magedu.com/devops/spring-boot-helloWorld.git"
+        codeRepo="http://git.lxj.com/devops/spring-boot-helloWorld.git"
     }
     stages {
         stage('Source') {
@@ -862,7 +862,7 @@ pipeline {
         maven 'maven-3.9.2'
     }
     environment {
-        codeRepo="http://git.magedu.com/devops/spring-boot-helloWorld.git"
+        codeRepo="http://git.lxj.com/devops/spring-boot-helloWorld.git"
     }
     stages {
         stage('Source') {
@@ -913,8 +913,8 @@ pipeline {
         maven 'maven-3.9.2'
     }
     environment {
-        codeRepo="http://git.magedu.com/devops/spring-boot-helloWorld.git"
-        harborServer='registry.magedu.com'
+        codeRepo="http://git.lxj.com/devops/spring-boot-helloWorld.git"
+        harborServer='registry.lxj.com'
         projectName='spring-boot-helloworld'
         imageUrl="${harborServer}/ikubernetes/${projectName}"
         imageTag="${BUILD_ID}"
@@ -964,8 +964,8 @@ pipeline {
         maven 'maven-3.9.2'
     }
     environment {
-        codeRepo="http://git.magedu.com/devops/spring-boot-helloWorld.git"
-        harborServer='registry.magedu.com'
+        codeRepo="http://git.lxj.com/devops/spring-boot-helloWorld.git"
+        harborServer='registry.lxj.com'
         projectName='spring-boot-helloworld'
         imageUrl="${harborServer}/ikubernetes/${projectName}"
         imageTag="${BUILD_ID}"
@@ -1021,8 +1021,8 @@ pipeline {
         maven 'maven-3.9.2'
     }
     environment {
-        codeRepo="http://git.magedu.com/devops/spring-boot-helloWorld.git"
-        harborServer='registry.magedu.com'
+        codeRepo="http://git.lxj.com/devops/spring-boot-helloWorld.git"
+        harborServer='registry.lxj.com'
         projectName='spring-boot-helloworld'
         imageUrl="${harborServer}/ikubernetes/${projectName}"
         imageTag="${BUILD_ID}"
@@ -1118,8 +1118,8 @@ pipeline {
             secretToken: '9iH0tq33ROMS07przzLiclNmfqSaoIeTOolHYf1E')
     }
     environment {
-        codeRepo="http://git.magedu.com/devops/spring-boot-helloWorld.git"
-        harborServer='registry.magedu.com'
+        codeRepo="http://git.lxj.com/devops/spring-boot-helloWorld.git"
+        harborServer='registry.lxj.com'
         projectName='spring-boot-helloworld'
         imageUrl="${harborServer}/ikubernetes/${projectName}"
         imageTag="${BUILD_ID}"
@@ -1198,8 +1198,8 @@ pipeline {
         )
     }   
     environment {
-        codeRepo="http://git.magedu.com/devops/spring-boot-helloWorld.git"
-        harborServer='registry.magedu.com'
+        codeRepo="http://git.lxj.com/devops/spring-boot-helloWorld.git"
+        harborServer='registry.lxj.com'
         projectName='spring-boot-helloworld'
         imageUrl="${harborServer}/ikubernetes/${projectName}"
         imageTag="${BUILD_ID}"
@@ -1269,8 +1269,8 @@ pipeline {
         )
     }   
     environment {
-        codeRepo="http://git.magedu.com/devops/spring-boot-helloWorld.git"
-        harborServer='registry.magedu.com'
+        codeRepo="http://git.lxj.com/devops/spring-boot-helloWorld.git"
+        harborServer='registry.lxj.com'
         projectName='spring-boot-helloworld'
         imageUrl="${harborServer}/ikubernetes/${projectName}"
         imageTag="${BUILD_ID}"
@@ -1377,8 +1377,8 @@ pipeline {
         )
     }   
     environment {
-        codeRepo="http://git.magedu.com/devops/spring-boot-helloWorld.git"
-        harborServer='registry.magedu.com'
+        codeRepo="http://git.lxj.com/devops/spring-boot-helloWorld.git"
+        harborServer='registry.lxj.com'
         projectName='spring-boot-helloworld'
         imageUrl="${harborServer}/ikubernetes/${projectName}"
         imageTag="${BUILD_ID}"
@@ -1532,8 +1532,8 @@ pipeline {
         )
     }   
     environment {
-        codeRepo="http://git.magedu.com/devops/spring-boot-helloWorld.git"
-        harborServer='registry.magedu.com'
+        codeRepo="http://git.lxj.com/devops/spring-boot-helloWorld.git"
+        harborServer='registry.lxj.com'
         projectName='spring-boot-helloworld'
         imageUrl="${harborServer}/ikubernetes/${projectName}"
         imageTag="${BUILD_ID}"
@@ -1695,8 +1695,8 @@ pipeline {
         )
     }   
     environment {
-        codeRepo="http://git.magedu.com/devops/spring-boot-helloWorld.git"
-        harborServer='registry.magedu.com'
+        codeRepo="http://git.lxj.com/devops/spring-boot-helloWorld.git"
+        harborServer='registry.lxj.com'
         projectName='spring-boot-helloworld'
         imageUrl="${harborServer}/ikubernetes/${projectName}"
         imageTag="${BUILD_ID}"
@@ -1775,8 +1775,8 @@ pipeline {
         )
     }   
     environment {
-        codeRepo="http://git.magedu.com/devops/spring-boot-helloWorld.git"
-        harborServer='registry.magedu.com'
+        codeRepo="http://git.lxj.com/devops/spring-boot-helloWorld.git"
+        harborServer='registry.lxj.com'
         projectName='spring-boot-helloworld'
         imageUrl="${harborServer}/ikubernetes/${projectName}"
         imageTag="${BUILD_ID}"
@@ -1891,9 +1891,9 @@ pipeline {
         )
     }   
     environment {
-        codeRepo="http://git.magedu.com/devops/spring-boot-helloWorld.git"
-        registry='registry.magedu.com'
-        registryUrl='https://registry.magedu.com'
+        codeRepo="http://git.lxj.com/devops/spring-boot-helloWorld.git"
+        registry='registry.lxj.com'
+        registryUrl='https://registry.lxj.com'
         registryCredential='harbor-user-credential'
         projectName='spring-boot-helloworld'
         imageUrl="${registry}/ikubernetes/${projectName}"
@@ -1995,9 +1995,9 @@ pipeline {
         )
     }   
     environment {
-        codeRepo="http://git.magedu.com/devops/spring-boot-helloWorld.git"
-        registry='registry.magedu.com'
-        registryUrl='https://registry.magedu.com'
+        codeRepo="http://git.lxj.com/devops/spring-boot-helloWorld.git"
+        registry='registry.lxj.com'
+        registryUrl='https://registry.lxj.com'
         registryCredential='harbor-user-credential'
         projectName='spring-boot-helloworld'
         imageUrl="${registry}/ikubernetes/${projectName}"
@@ -2130,9 +2130,9 @@ pipeline {
         )
     }   
     environment {
-        codeRepo="http://git.magedu.com/devops/spring-boot-helloWorld.git"
-        registry='registry.magedu.com'
-        registryUrl='https://registry.magedu.com'
+        codeRepo="http://git.lxj.com/devops/spring-boot-helloWorld.git"
+        registry='registry.lxj.com'
+        registryUrl='https://registry.lxj.com'
         registryCredential='harbor-user-credential'
         projectName='spring-boot-helloworld'
         imageUrl="${registry}/ikubernetes/${projectName}"
@@ -2279,9 +2279,9 @@ pipeline {
         )
     }   
     environment {
-        codeRepo="http://git.magedu.com/devops/spring-boot-helloWorld.git"
-        registry='registry.magedu.com'
-        registryUrl='https://registry.magedu.com'
+        codeRepo="http://git.lxj.com/devops/spring-boot-helloWorld.git"
+        registry='registry.lxj.com'
+        registryUrl='https://registry.lxj.com'
         registryCredential='harbor-user-credential'
         projectName='spring-boot-helloworld'
         imageUrl="${registry}/ikubernetes/${projectName}"
